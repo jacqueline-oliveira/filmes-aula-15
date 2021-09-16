@@ -7,13 +7,14 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.data.repository.Repository;
 import org.springframework.stereotype.Component;
 
+import br.com.tech4me.projetofilmes.repository.AtorRepository;
 import br.com.tech4me.projetofilmes.repository.FilmeRepository;
 
 @Component
 public class LoopPrincipal {
     @Autowired
     private ApplicationContext context;
-
+   
     @SuppressWarnings({"unchecked", "rawtypes"})
     public void loop() {
         int opcao;
@@ -30,6 +31,9 @@ public class LoopPrincipal {
             System.out.println("1 - Buscar filme");
             System.out.println("2 - Incluir filme");
             System.out.println("3 - Listar filmes");
+            System.out.println("4 - Buscar ator");
+            System.out.println("5 - Incluir ator");
+            System.out.println("6 - Listar atores");
             System.out.println("0 - Sair");
             System.out.print("Opção: ");
             opcao = entrada.nextInt();
@@ -48,6 +52,18 @@ public class LoopPrincipal {
                     tela = new TelaListarFilmes();
                     repositorio = context.getBean(FilmeRepository.class);
                     break;
+                case 4:
+                    tela = new TelaBuscarAtor();
+                    repositorio = context.getBean(AtorRepository.class);
+                    break;
+                case 5:
+                    tela = new TelaCadastrarAtor();
+                    repositorio = context.getBean(AtorRepository.class);
+                    break;
+                case 6:
+                    tela = new TelaListarAtores();
+                    repositorio = context.getBean(AtorRepository.class);
+                    break;    
                 case 0:
                     System.out.println("Fim do programa!");
                     break;
